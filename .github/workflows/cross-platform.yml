@@ -1,0 +1,23 @@
+name: "Cross-platform"
+
+on:
+    push: null
+
+jobs:
+    sed:
+        name: "Stream editor"
+        strategy:
+            matrix:
+                os:
+                - "ubuntu-latest"
+                - "macos-latest"
+                - "windows-latest"
+        runs-on: "${{ matrix.os }}"
+        steps:
+        -
+            name: "On zsh"
+            shell: "zsh {0}"
+            run: |
+                echo "Name: ${ZSH_NAME} Version: ${ZSH_VERSION}"
+                which -a sed
+                sed --version
