@@ -39,8 +39,9 @@ jobs:
                     echo "Testing ${TEST_NAME} ..."
                     test "$(eval "${TEST_COMMAND}")" = "${TEST_OUTPUT}"
                 }
-                export -f run_test
-                find ./ -mindepth 1 -maxdepth 1 -type d -exec run_test "{}" ";"
+                while read -r FILE; do
+                    run_test "${FILE}"
+                done < <(find ./ -mindepth 1 -maxdepth 1 -type d)
         -
             name: "Run tests"
             if: "${{ matrix.shell == 'zsh' }}"
@@ -53,5 +54,6 @@ jobs:
                     echo "Testing ${TEST_NAME} ..."
                     test "$(eval "${TEST_COMMAND}")" = "${TEST_OUTPUT}"
                 }
-                export -f run_test
-                find ./ -mindepth 1 -maxdepth 1 -type d -exec run_test "{}" ";"
+                while read -r FILE; do
+                    run_test "${FILE}"
+                done < <(find ./ -mindepth 1 -maxdepth 1 -type d)
