@@ -54,4 +54,5 @@ jobs:
             shell: "zsh {0}"
             run: |
                 pwd
+                trap 'exit 1' ZERR
                 . ./run_test.sh
