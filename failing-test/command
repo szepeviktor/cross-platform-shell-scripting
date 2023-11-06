@@ -1,2 +1,2 @@
 # Should fail
-ls file-not-found
+! ls file-not-found
