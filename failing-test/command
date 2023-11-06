@@ -1,5 +1,5 @@
 # Should fail
-if ls file-not-found; then
+if ls file-not-found 2>/dev/null; then
     exit 2
 else
     exit 0
