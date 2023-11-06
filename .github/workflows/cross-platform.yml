@@ -28,8 +28,8 @@ jobs:
             run: |
                 echo "Name: ${ZSH_NAME} Version: ${ZSH_VERSION}"
         -
-            name: "Run tests"
-            shell: "${{ matrix.shell == 'zsh' && 'zsh {0}' || 'bash' }}"
+            name: "Run tests ${{ matrix.shell == 'zsh' && 'zsh {0}' || 'bash' }}"
+            shell: "bash"
             run: |
                 run_test() {
                     TEST_NAME="$1"
