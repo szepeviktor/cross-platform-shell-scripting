@@ -12,11 +12,12 @@ jobs:
                 - "ubuntu-latest"
                 - "macos-latest"
                 - "windows-latest"
+            fail-fast: false
         runs-on: "${{ matrix.os }}"
         steps:
         -
             name: "Display zsh version"
-            if: "${{ matrix.os != 'windows-latest' }}"
+            if: "${{ matrix.os == 'macos-latest' }}"
             shell: "zsh {0}"
             run: |
                 echo "Name: ${ZSH_NAME} Version: ${ZSH_VERSION}"
