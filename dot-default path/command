@@ -1,0 +1,2 @@
+# Not working: . run_test.sh
+. "./dot-relative path/script"

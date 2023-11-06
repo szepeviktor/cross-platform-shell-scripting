@@ -1,1 +1,2 @@
+# Not working: sed -e '.\+'
 echo "aLLma" | sed -E -e 's#(L+)#[\1]#'

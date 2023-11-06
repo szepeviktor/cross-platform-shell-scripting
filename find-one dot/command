@@ -1,0 +1,2 @@
+# Not working: find ./
+find "./find-one dot" -type f -name "command"
