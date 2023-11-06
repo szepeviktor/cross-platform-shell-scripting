@@ -33,21 +33,21 @@ jobs:
             shell: "bash --noprofile --norc -eo pipefail {0}"
             run: |
                 pwd
-                . ./run_test.sh
+                . ./run-tests.sh
         -
             name: "Run tests with POSIX Bash"
             if: "${{ matrix.shell == 'bash' }}"
             shell: "bash --posix --noprofile --norc -eo pipefail {0}"
             run: |
                 pwd
-                . ./run_test.sh
+                . ./run-tests.sh
         -
             name: "Run tests with Dash"
             if: "${{ matrix.shell == 'dash' }}"
             shell: "dash -e {0}"
             run: |
                 pwd
-                . ./run_test.sh
+                . ./run-tests.sh
         -
             name: "Run tests with Zsh"
             if: "${{ matrix.shell == 'zsh' }}"
@@ -55,4 +55,4 @@ jobs:
             run: |
                 pwd
                 trap 'exit 1' ZERR
-                . ./run_test.sh
+                . ./run-tests.sh
