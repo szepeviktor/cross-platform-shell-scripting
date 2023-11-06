@@ -28,13 +28,29 @@ jobs:
             run: |
                 echo "Name: ${ZSH_NAME} Version: ${ZSH_VERSION}"
         -
-            name: "Run tests ${{ matrix.shell == 'zsh' && 'zsh {0}' || 'bash' }}"
+            name: "Run tests"
+            if: "${{ matrix.shell == 'bash' }}"
             shell: "bash"
             run: |
                 run_test() {
                     TEST_NAME="$1"
-                    TEST_COMMAND="$(cat "$1/command")"
-                    TEST_OUTPUT="$(cat "$1/output")"
+                    TEST_COMMAND="$(cat "${TEST_NAME}/command")"
+                    TEST_OUTPUT="$(cat "${TEST_NAME}/output")"
+                    echo "Testing ${TEST_NAME} ..."
+                    test "$(eval "${TEST_COMMAND}")" = "${TEST_OUTPUT}"
+                }
+                export -f run_test
+                find ./ -mindepth 1 -maxdepth 1 -type d -exec run_test "{}" ";"
+        -
+            name: "Run tests"
+            if: "${{ matrix.shell == 'zsh' }}"
+            shell: "zsh {0}"
+            run: |
+                run_test() {
+                    TEST_NAME="$1"
+                    TEST_COMMAND="$(cat "${TEST_NAME}/command")"
+                    TEST_OUTPUT="$(cat "${TEST_NAME}/output")"
+                    echo "Testing ${TEST_NAME} ..."
                     test "$(eval "${TEST_COMMAND}")" = "${TEST_OUTPUT}"
                 }
                 export -f run_test
