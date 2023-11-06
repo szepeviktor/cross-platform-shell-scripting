@@ -44,7 +44,7 @@ jobs:
                 }
                 while read -r FILE; do
                     run_test "${FILE}"
-                done < <(find ./ -mindepth 1 -maxdepth 1 -type d -not -path "./.*")
+                done < <(find . -mindepth 1 -maxdepth 1 -type d -not -path "./.*")
         -
             name: "Run tests"
             if: "${{ matrix.shell == 'zsh' }}"
@@ -59,4 +59,4 @@ jobs:
                 }
                 while read -r FILE; do
                     run_test "${FILE}"
-                done < <(find ./ -mindepth 1 -maxdepth 1 -type d -not -path "./.*")
+                done < <(find . -mindepth 1 -maxdepth 1 -type d -not -path "./.*")
