@@ -16,13 +16,13 @@ jobs:
         steps:
         -
             name: "Install zsh"
-            if: "${{ matrix.os = 'ubuntu-latest' }}"
+            if: "${{ matrix.os == 'ubuntu-latest' }}"
             run: |
                 sudo apt-get update
                 sudo apt-get install -q zsh
         -
             name: "Install zsh"
-            if: "${{ matrix.os = 'windows-latest' }}"
+            if: "${{ matrix.os == 'windows-latest' }}"
             run: |
                 choco install zsh
         -
@@ -33,6 +33,6 @@ jobs:
                 which -a sed
         -
             name: "Display sed version"
-            if: "${{ matrix.os = 'macos-latest' }}"
+            if: "${{ matrix.os == 'macos-latest' }}"
             run: |
                 pkgutil --file-info /usr/bin/sed
