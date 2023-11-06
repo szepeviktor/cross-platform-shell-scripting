@@ -1,2 +1,2 @@
-# Not working: . run_test.sh
-. "./dot-relative path/script"
+# Not working: . script
+. "./dot-default path/script"
