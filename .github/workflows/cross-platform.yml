@@ -37,14 +37,20 @@ jobs:
             name: "Run tests"
             if: "${{ matrix.shell == 'bash' }}"
             shell: "bash"
-            run: ". run_test.sh"
+            run: |
+                pwd
+                . run_test.sh
         -
             name: "Run tests"
             if: "${{ matrix.shell == 'dash' }}"
             shell: "dash {0}"
-            run: ". run_test.sh"
+            run: |
+                pwd
+                . run_test.sh
         -
             name: "Run tests"
             if: "${{ matrix.shell == 'zsh' }}"
             shell: "zsh {0}"
-            run: ". run_test.sh"
+            run: |
+                pwd
+                . run_test.sh
