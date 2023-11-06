@@ -1,0 +1,1 @@
+echo "aLLma" | sed -E -e 's#(L+)#[\1]#'
