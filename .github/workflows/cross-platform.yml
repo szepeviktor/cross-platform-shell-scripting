@@ -15,24 +15,31 @@ jobs:
         runs-on: "${{ matrix.os }}"
         steps:
         -
-            name: "Install zsh"
-            if: "${{ matrix.os == 'ubuntu-latest' }}"
-            run: |
-                sudo apt-get update
-                sudo apt-get install -q zsh
-        -
-            name: "Install zsh"
-            if: "${{ matrix.os == 'windows-latest' }}"
-            run: |
-                choco install zsh
-        -
-            name: "On zsh"
+            name: "Display zsh version"
+            if: "${{ matrix.os != 'windows-latest' }}"
             shell: "zsh {0}"
             run: |
                 echo "Name: ${ZSH_NAME} Version: ${ZSH_VERSION}"
-                which -a sed
         -
             name: "Display sed version"
-            if: "${{ matrix.os == 'macos-latest' }}"
+            shell: "bash"
             run: |
-                pkgutil --file-info /usr/bin/sed
+                stat "$(which sed)"
+        -
+            name: "Run sed test"
+            if: "${{ matrix.os == 'ubuntu-latest' }}"
+            shell: "bash"
+            run: |
+                echo "aLLma" | sed -E -e 's#(L+)#[\1]#'
+        -
+            name: "Run sed test"
+            if: "${{ matrix.os == 'macos-latest' }}"
+            shell: "zsh {0}"
+            run: |
+                echo "aLLma" | sed -E -e 's#(L+)#[\1]#'
+        -
+            name: "Run sed test"
+            if: "${{ matrix.os == 'windows-latest' }}"
+            shell: "bash"
+            run: |
+                echo "aLLma" | sed -E -e 's#(L+)#[\1]#'
