@@ -3,6 +3,7 @@ run_test()
     TEST_NAME="$1"
 
     echo "Testing ${TEST_NAME} ..."
+    echo "DBG: $(. "${TEST_NAME}/command") = $(cat "${TEST_NAME}/output")"
     test "$(. "${TEST_NAME}/command")" = "$(cat "${TEST_NAME}/output")"
 }
 
