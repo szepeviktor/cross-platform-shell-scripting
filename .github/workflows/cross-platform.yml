@@ -28,32 +28,30 @@ jobs:
             name: "Checkout repository"
             uses: "actions/checkout@v3"
         -
-            name: "Display zsh version"
-            if: "${{ matrix.shell == 'zsh' }}"
-            shell: "zsh {0}"
-            run: |
-                echo "Name: ${ZSH_NAME} Version: ${ZSH_VERSION}"
-        -
-            name: "Run tests"
+            name: "Run tests with Bash"
             if: "${{ matrix.shell == 'bash' }}"
-            shell: "bash"
+            shell: "bash --noprofile --norc -eo pipefail {0}"
             run: |
                 pwd
-                find .
                 . ./run_test.sh
         -
-            name: "Run tests"
+            name: "Run tests with POSIX Bash"
+            if: "${{ matrix.shell == 'bash' }}"
+            shell: "bash --posix --noprofile --norc -eo pipefail {0}"
+            run: |
+                pwd
+                . ./run_test.sh
+        -
+            name: "Run tests with Dash"
             if: "${{ matrix.shell == 'dash' }}"
-            shell: "dash {0}"
+            shell: "dash -e {0}"
             run: |
                 pwd
-                find .
                 . ./run_test.sh
         -
-            name: "Run tests"
+            name: "Run tests with Zsh"
             if: "${{ matrix.shell == 'zsh' }}"
             shell: "zsh {0}"
             run: |
                 pwd
-                find .
                 . ./run_test.sh
