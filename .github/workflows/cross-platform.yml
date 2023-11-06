@@ -39,18 +39,21 @@ jobs:
             shell: "bash"
             run: |
                 pwd
-                . run_test.sh
+                find .
+                . ./run_test.sh
         -
             name: "Run tests"
             if: "${{ matrix.shell == 'dash' }}"
             shell: "dash {0}"
             run: |
                 pwd
-                . run_test.sh
+                find .
+                . ./run_test.sh
         -
             name: "Run tests"
             if: "${{ matrix.shell == 'zsh' }}"
             shell: "zsh {0}"
             run: |
                 pwd
-                . run_test.sh
+                find .
+                . ./run_test.sh
