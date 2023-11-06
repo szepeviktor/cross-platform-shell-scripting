@@ -27,20 +27,20 @@ jobs:
             run: |
                 stat "$(which sed)"
         -
-            name: "Run sed test"
+            name: "Run one or more occurrences test"
             if: "${{ matrix.os == 'ubuntu-latest' }}"
             shell: "bash"
             run: |
-                echo "aLLma" | sed -E -e 's#(L+)#[\1]#'
+                test "$(echo "aLLma" | sed -E -e 's#(L+)#[\1]#')" = "a[LL]ma"
         -
-            name: "Run sed test"
+            name: "Run one or more occurrences test"
             if: "${{ matrix.os == 'macos-latest' }}"
             shell: "zsh {0}"
             run: |
-                echo "aLLma" | sed -E -e 's#(L+)#[\1]#'
+                test "$(echo "aLLma" | sed -E -e 's#(L+)#[\1]#')" = "a[LL]ma"
         -
-            name: "Run sed test"
+            name: "Run one or more occurrences test"
             if: "${{ matrix.os == 'windows-latest' }}"
             shell: "bash"
             run: |
-                echo "aLLma" | sed -E -e 's#(L+)#[\1]#'
+                test "$(echo "aLLma" | sed -E -e 's#(L+)#[\1]#')" = "a[LL]ma"
