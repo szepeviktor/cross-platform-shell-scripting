@@ -2,6 +2,7 @@ name: "Cross-platform"
 
 on:
     push: null
+    workflow_dispatch: null
 
 jobs:
     sed:
